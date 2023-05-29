@@ -1,6 +1,7 @@
 package com.vavatech.springrestexample.api;
 
 import com.vavatech.springrestexample.entity.Car;
+import com.vavatech.springrestexample.service.CarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,12 @@ import java.util.List;
 @RequestMapping("/api/cars")
 @Slf4j
 public class CarController {
+
+    private final CarService carService;
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping
     public List<Car> allCars() {
@@ -32,22 +39,9 @@ public class CarController {
     // /api/cars/1
     // /api/cars/13456
     @GetMapping("/{carId}")
-    public ResponseEntity<Car> carById(@PathVariable("carId") Long id) {
+    public Car carById(@PathVariable("carId") Long id) {
         log.info("car by id: [{}]", id);
 
-        if (id == 1L) {
-
-            var car = Car.builder()
-                    .id(id)
-                    .brand("Mazda")
-                    .model("VI")
-                    .yearMonthProduction(YearMonth.of(2000, 1))
-                    .mileage(200_000)
-                    .build();
-            return ResponseEntity.ok(car);
-        } else {
-            log.info("wrong id");
-            return ResponseEntity.notFound().build();
-        }
+        return carService.findCarById(id);
     }
 }
