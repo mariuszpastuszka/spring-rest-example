@@ -32,15 +32,22 @@ public class CarController {
     // /api/cars/1
     // /api/cars/13456
     @GetMapping("/{carId}")
-    public Car carById(@PathVariable("carId") Long id) {
+    public ResponseEntity<Car> carById(@PathVariable("carId") Long id) {
         log.info("car by id: [{}]", id);
 
-        return Car.builder()
-                .id(id)
-                .brand("Mazda")
-                .model("VI")
-                .yearMonthProduction(YearMonth.of(2000, 1))
-                .mileage(200_000)
-                .build();
+        if (id == 1L) {
+
+            var car = Car.builder()
+                    .id(id)
+                    .brand("Mazda")
+                    .model("VI")
+                    .yearMonthProduction(YearMonth.of(2000, 1))
+                    .mileage(200_000)
+                    .build();
+            return ResponseEntity.ok(car);
+        } else {
+            log.info("wrong id");
+            return ResponseEntity.notFound().build();
+        }
     }
 }
