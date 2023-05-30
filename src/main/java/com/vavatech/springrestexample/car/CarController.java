@@ -1,5 +1,6 @@
 package com.vavatech.springrestexample.car;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -44,7 +45,7 @@ class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Car> createCar(@RequestBody Car toSave,
+    public ResponseEntity<Car> createCar(@RequestBody @Valid Car toSave,
                                          UriComponentsBuilder ucb) {
         log.info("trying to create new car: {}", toSave);
 
