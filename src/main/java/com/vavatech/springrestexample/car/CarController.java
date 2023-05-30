@@ -2,6 +2,7 @@ package com.vavatech.springrestexample.car;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -20,7 +21,7 @@ class CarController {
         this.carService = carService;
     }
 
-    @GetMapping
+    @GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
     public List<CarEntity> allCars() {
         log.info("all cars");
         return carService.findAll();
