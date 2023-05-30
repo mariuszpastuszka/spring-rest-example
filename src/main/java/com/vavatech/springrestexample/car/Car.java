@@ -1,4 +1,4 @@
-package com.vavatech.springrestexample.entity;
+package com.vavatech.springrestexample.car;
 
 import lombok.Builder;
 
@@ -6,7 +6,7 @@ import java.time.YearMonth;
 
 
 @Builder
-public record Car(
+record Car(
         Long id,
         String brand,
         String model,

@@ -1,6 +1,6 @@
-package com.vavatech.springrestexample.exception;
+package com.vavatech.springrestexample.car;
 
-public class CarNotFoundException extends RuntimeException {
+class CarNotFoundException extends RuntimeException {
     public CarNotFoundException(String s) {
         super(s);
     }

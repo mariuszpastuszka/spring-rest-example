@@ -1,21 +1,17 @@
-package com.vavatech.springrestexample.api;
+package com.vavatech.springrestexample.car;
 
-import com.vavatech.springrestexample.entity.Car;
-import com.vavatech.springrestexample.service.CarService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.YearMonth;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
 @Slf4j
-public class CarController {
+class CarController {
 
     private final CarService carService;
 
