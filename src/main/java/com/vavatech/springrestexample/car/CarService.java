@@ -15,7 +15,7 @@ class CarService {
                     .brand("Mazda")
                     .model("VI")
                     .yearMonthProduction(YearMonth.of(2000, 1))
-                    .mileage(200_000)
+                    .mileage(200_000L)
                     .build();
         }
         throw new CarNotFoundException("No car with id: " + id);

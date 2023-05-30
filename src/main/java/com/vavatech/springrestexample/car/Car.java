@@ -11,6 +11,6 @@ record Car(
         String brand,
         String model,
         YearMonth yearMonthProduction,
-        long mileage
+        Long mileage
 ) {
 }
