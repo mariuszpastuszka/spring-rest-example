@@ -21,9 +21,9 @@ class CarController {
     }
 
     @GetMapping
-    public List<Car> allCars() {
+    public List<CarEntity> allCars() {
         log.info("all cars");
-        return List.of();
+        return carService.findAll();
     }
 
 //    @GetMapping
@@ -36,7 +36,7 @@ class CarController {
     // /api/cars/1
     // /api/cars/13456
     @GetMapping("/{carId}")
-    public Car carById(@PathVariable("carId") Long id) {
+    public CarEntity carById(@PathVariable("carId") Long id) {
         log.info("car by id: [{}]", id);
 
         return carService.findCarById(id);

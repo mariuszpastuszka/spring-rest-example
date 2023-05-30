@@ -4,20 +4,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.YearMonth;
+import java.util.List;
 
 @Service
 @Slf4j
 class CarService {
-    public Car findCarById(Long id) {
-        if (id == 1L) {
-            return  Car.builder()
-                    .id(id)
-                    .brand("Mazda")
-                    .model("VI")
-                    .yearMonthProduction(YearMonth.of(2000, 1))
-                    .mileage(200_000L)
-                    .build();
-        }
-        throw new CarNotFoundException("No car with id: " + id);
+
+    private final CarRepository carRepository;
+
+    CarService(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
+    public CarEntity findCarById(Long id) {
+        return carRepository.findById(id)
+                .orElseThrow(() -> new CarNotFoundException("No car with id: " + id));
+
+    }
+
+    public List<CarEntity> findAll() {
+        return carRepository.findAll();
     }
 }
